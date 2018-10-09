@@ -12,6 +12,9 @@ Drone Delivery Challenge solution
 * Finally, run the program: ```python program.py '/path_to_file/input.txt'```
 
 ## Assumptions
+### Deliveries
+* Since all deliveries originate at the warehouse, it is assumed the drone must return to the warehouse between deliveries to get the next order item.
+* Since the warehouse is in the center and all deliveries originate there, it is assumed the direction of the delivery is not relevant and is only used to calculate the total gride spaces the drone has to travel.
 ### Time to Delivery
 * The customers do not know the drones hours of operation and thus the time to delivery is calculated as time between time of order to time of delivery.
 
