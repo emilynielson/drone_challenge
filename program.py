@@ -80,7 +80,6 @@ def run_program():
     timeFormat = '%H:%M:%S'
     droneStartDatetime = datetime.strptime(droneStart, timeFormat)
     droneEndDatetime = datetime.strptime(droneEnd, timeFormat)
-
     content = importFile('/Users/m31277/drone/drone_challenge/input.txt')
     orders = createOrders(content)
     drones = createDrones(orders)
