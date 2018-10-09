@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 import ipdb
 
-
+#Readlines in import file and return list of lines
 def importFile(filePath):
     file = os.path.abspath(filePath)
     with open(file) as f:
@@ -13,6 +13,7 @@ def importFile(filePath):
         f.close()
     return content
 
+#Write order number with departure time and NPS score to output textfile
 def exportFile(lines, nps):
     lastLine = 'NPS '+ str(nps)
     lines.append(lastLine)
@@ -21,7 +22,7 @@ def exportFile(lines, nps):
             f.write("%s\n" % line)
     f.close()
 
-
+#Create Order objects and return in a list
 def createOrders(content):
     orders =[]
     for i in content:
@@ -34,6 +35,7 @@ def createOrders(content):
         orders.append(order)
     return orders
 
+#Create Drone objects and return in a list
 def createDrones(orders):
     drones = []
     for order in orders:
@@ -41,6 +43,7 @@ def createDrones(orders):
         drones.append(drone)
     return drones
 
+#Calculate Drone departure times, nps and return times and return list of lines for the output file
 def runDeliveries(drones, droneStartTime):
     output = []
     startTime = 0
@@ -58,6 +61,7 @@ def runDeliveries(drones, droneStartTime):
         output.append(line)
     return output
 
+#Calculate NPS score from saved Drone nps attributes
 def getNPS(drones):
     totalOrders = len(drones)
     npsScores = []
@@ -69,7 +73,7 @@ def getNPS(drones):
     score = int(((promotors/totalOrders)-(detractors/totalOrders))*100)
     return score
     
-
+#Run the program
 def run_program():
     droneStart = '06:00:00'
     droneEnd = '22:00:00'
