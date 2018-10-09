@@ -1,11 +1,12 @@
 from drone import Drone
 from order import Order
 
+import sys
 import os
 from datetime import datetime
 import ipdb
 
-filePath = '/Users/m31277/drone/drone_challenge/input.txt'
+filePath = sys.argv[1]
 
 #Readlines in import file and return list of lines
 def importFile(filePath):
