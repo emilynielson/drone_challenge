@@ -39,14 +39,23 @@ class Drone(object):
     
     #calculate delivery time
     def calculateDeliveryTime(self, droneDeparture):
-        ipdb.set_trace()
         deliveryTime = droneDeparture + timedelta(minutes = self.movementTime)
         return deliveryTime
 
     #calculate return time
-    def calculateReturnTime():
-        pass
+    def calculateReturnTime(self):
+        returnTime = self.deliveryTime + timedelta(minutes = self.movementTime)
+        return returnTime
 
     #calculate NPS score
-    def calculateNPS(self):
-        deltaTime = self.deiveryTime - self.orderTime
+    def calculateNPS(self,):
+        deltaTime = self.deliveryTime - self.orderTime
+        hours = deltaTime.seconds//3600
+        if hours == 0 or hours == 1:
+            nps = 1
+        elif hours == 2 or hours == 3:
+            nps = 0
+        else:
+            nps = -1
+        return nps
+

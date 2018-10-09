@@ -13,6 +13,15 @@ def importFile(filePath):
         f.close()
     return content
 
+def exportFile(lines, nps):
+    lastLine = 'NPS '+ str(nps)
+    lines.append(lastLine)
+    with open('output.txt', 'w') as f:
+        for line in lines:
+            f.write("%s\n" % line)
+    f.close()
+
+
 def createOrders(content):
     orders =[]
     for i in content:
@@ -33,8 +42,7 @@ def createDrones(orders):
     return drones
 
 def runDeliveries(drones, droneStartTime):
-    ipdb.set_trace()
-    output = {}
+    output = []
     startTime = 0
     for drone in drones:
         if drone == drones[0]:
@@ -42,8 +50,25 @@ def runDeliveries(drones, droneStartTime):
         else:
             droneDeparture = startTime
         drone.deliveryTime = drone.calculateDeliveryTime(droneDeparture)
-        drone.nps = drone.calculateNPS(drone.deliveryTime)
+        drone.nps = drone.calculateNPS()
+        drone.returnTime = drone.calculateReturnTime()
+        startTime = drone.returnTime
+        formatDepartureTime = droneDeparture.strftime('%H:%M:%S')
+        line = drone.orderNumber +' '+formatDepartureTime
+        output.append(line)
+    return output
 
+def getNPS(drones):
+    totalOrders = len(drones)
+    npsScores = []
+    for drone in drones:
+        nps = drone.nps
+        npsScores.append(nps)
+    promotors = npsScores.count(1)
+    detractors = npsScores.count(-1)
+    score = int(((promotors/totalOrders)-(detractors/totalOrders))*100)
+    return score
+    
 
 def run_program():
     droneStart = '06:00:00'
@@ -55,9 +80,9 @@ def run_program():
     content = importFile('/Users/m31277/drone/drone_challenge/input.txt')
     orders = createOrders(content)
     drones = createDrones(orders)
-    runDeliveries(drones, droneStartDatetime)
-
-
+    lines = runDeliveries(drones, droneStartDatetime)
+    nps = getNPS(drones)
+    exportFile(lines, nps)
 
 
 run_program()
