@@ -2,6 +2,7 @@ from drone import Drone
 from order import Order
 
 import os
+from datetime import datetime
 import ipdb
 
 
@@ -22,7 +23,41 @@ def createOrders(content):
         time = items[2]
         order = Order(number, location, time)
         orders.append(order)
+    return orders
+
+def createDrones(orders):
+    drones = []
+    for order in orders:
+        drone = Drone(order)
+        drones.append(drone)
+    return drones
+
+def runDeliveries(drones, droneStartTime):
+    ipdb.set_trace()
+    output = {}
+    startTime = 0
+    for drone in drones:
+        if drone == drones[0]:
+            droneDeparture = droneStartTime
+        else:
+            droneDeparture = startTime
+        drone.deliveryTime = drone.calculateDeliveryTime(droneDeparture)
+        drone.nps = drone.calculateNPS(drone.deliveryTime)
 
 
-content = importFile('/Users/m31277/drone/drone_challenge/input.txt')
-orders = createOrders(content)
+def run_program():
+    droneStart = '06:00:00'
+    droneEnd = '22:00:00'
+    timeFormat = '%H:%M:%S'
+    droneStartDatetime = datetime.strptime(droneStart, timeFormat)
+    droneEndDatetime = datetime.strptime(droneEnd, timeFormat)
+
+    content = importFile('/Users/m31277/drone/drone_challenge/input.txt')
+    orders = createOrders(content)
+    drones = createDrones(orders)
+    runDeliveries(drones, droneStartDatetime)
+
+
+
+
+run_program()
