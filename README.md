@@ -12,9 +12,12 @@ Drone Delivery Challenge solution
 * Finally, run the program: ```python program.py '/path_to_file/input.txt'```
 
 ## Assumptions
+### Time to Delivery
+* The customers do not know the drones hours of operation and thus the time to delivery is calculated as from time of order to time of delivery.
+
 ### NPS 
-* All promotors are all weighted as a 1 and all detractors are weighted as a -1 (a 10 hour detractor is the same as 4 hour detractor) when generating the NPS
-* NPS is calculated as a percentage and is then converated to a score out of 100
+* All promotors are all weighted as a 1 and all detractors are weighted as a -1 (a 10 hour detractor is the same as 4 hour detractor) when generating the NPS.
+* NPS is calculated as a percentage and is then converated to a score out of 100.
 
 ## Running tests
 
