@@ -5,6 +5,8 @@ import os
 from datetime import datetime
 import ipdb
 
+filePath = '/Users/m31277/drone/drone_challenge/input.txt'
+
 #Readlines in import file and return list of lines
 def importFile(filePath):
     file = os.path.abspath(filePath)
@@ -21,6 +23,7 @@ def exportFile(lines, nps):
         for line in lines:
             f.write("%s\n" % line)
     f.close()
+    print(os.path.dirname(os.path.abspath(f.name))+'/'+f.name)
 
 #Create Order objects and return in a list
 def createOrders(content):
@@ -74,13 +77,13 @@ def getNPS(drones):
     return score
     
 #Run the program
-def run_program():
+def run_program(filePath):
     droneStart = '06:00:00'
     droneEnd = '22:00:00'
     timeFormat = '%H:%M:%S'
     droneStartDatetime = datetime.strptime(droneStart, timeFormat)
     droneEndDatetime = datetime.strptime(droneEnd, timeFormat)
-    content = importFile('/Users/m31277/drone/drone_challenge/input.txt')
+    content = importFile(filePath)
     orders = createOrders(content)
     drones = createDrones(orders)
     lines = runDeliveries(drones, droneStartDatetime)
@@ -88,4 +91,4 @@ def run_program():
     exportFile(lines, nps)
 
 
-run_program()
+run_program(filePath)
