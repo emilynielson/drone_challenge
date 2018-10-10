@@ -1,6 +1,6 @@
 
 import unittest
-from program import *
+from process import importFile, createOrders, createDrones, runDeliveries, getNPS
 from datetime import datetime
 
 class ProgramTest(unittest.TestCase):
