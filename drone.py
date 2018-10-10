@@ -19,8 +19,9 @@ class Drone(object):
         locationSplit.pop(0)
         locationNumbers =[]
         newNumber = []
+        i = 1
         for x in locationSplit:
-            if x == locationSplit[-1]:
+            if i == len(locationSplit):
                 int(x)
                 newNumber.append(x)
                 number = int(''.join(newNumber))
@@ -34,6 +35,7 @@ class Drone(object):
                     number = int(''.join(newNumber))
                     locationNumbers.append(number)
                     newNumber = []
+            i+=1
         movementTime = int(locationNumbers[0]) + int(locationNumbers[1])
         return movementTime
     
