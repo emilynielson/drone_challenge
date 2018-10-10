@@ -24,7 +24,7 @@ Drone Delivery Challenge solution
 
 ## Running tests
 
-* Run unittests ```python -m unittest tests```
+* Run unittests ```python -m unittest tests.py```
 * Run coverage ```coverage run -m unittest tests.py```
 * View coverage report ```coverage report```
 * Generate coverage html ```coverage html -i```
